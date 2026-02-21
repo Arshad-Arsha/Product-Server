@@ -10,7 +10,7 @@ import { userAuthorization } from "../middleware/userAuthoerizations.js";
 
 const router = Router();
 
-// router.post("/create", userAuthorization(["seller"]), productCreate);
+
 router.post("/create", userAuthorization(["seller", "admin"]), productCreate);
 router.get("/get",userAuthorization(["customer","admin","seller"]) ,productGet);
 router.get("/get/:id",userAuthorization(["customer","admin","seller"]) , productGetById);
@@ -18,3 +18,4 @@ router.put("/update/:id", userAuthorization(["seller", "admin"]), productUpdate)
 router.delete("/delete/:id", userAuthorization(["seller", "admin"]), productDelete);
 
 export default router;
+
