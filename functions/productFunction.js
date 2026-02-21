@@ -6,7 +6,7 @@ export const productCreate = async (req, res) => {
     await productModel.create({...req.body,seller_id : req.userId });
     
 
-  
+    // res.send("Product created successfully"); oldtype send
     res.status(200).json({messge :"Product created successfully", success : true})
   } catch (error) {
     console.log(error);
@@ -17,7 +17,7 @@ export const productCreate = async (req, res) => {
 /* GET ALL PRODUCTS */
 export const productGet = async (req, res) => {
   try {
-   
+    // const products = await productModel.find({seller_id: req.userId});
     const products = await productModel.find();
   
     res.send(products);
@@ -60,4 +60,3 @@ export const productDelete = async (req, res) => {
     res.status(500).send("Product delete failed");
   }
 };
-

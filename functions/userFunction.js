@@ -2,6 +2,36 @@ import userModel from "../schema/userSchema.js";
 import bcrypt from "bcrypt";
 
 // CREATE USER
+// export const userCreate = async (req, res) => {
+//   try {
+//     const { password, confirmPassword, email, username, contact, role } = req.body;
+
+//     if (!password || !confirmPassword || !email || !username) {
+//       return res.status(400).json({ success: false, message: "All fields are required" });
+//     }
+
+//     if (password !== confirmPassword) {
+//       return res.status(400).json({ success: false, message: "Passwords do not match" });
+//     }
+
+//     // Check if user already exists
+//     const existingUser = await userModel.findOne({ email });
+//     if (existingUser) {
+//       return res.status(400).json({ success: false, message: "Email already registered" });
+//     }
+
+//     const encrypted = await bcrypt.hash(password, 3);
+//     await userModel.create({ email, username, contact, role, password: encrypted });
+
+//     res.status(201).json({ success: true, message: "User created successfully" });
+//   } catch (error) {
+//     console.log("USER CREATE ERROR:", error);
+//     res.status(500).json({
+//       success: false,
+//       message: error.message
+//     });
+//   }
+// };
 export const userCreate = async (req, res) => {
   try {
     const { password, confirmPassword, email, username, contact, role } = req.body;
@@ -102,4 +132,3 @@ export const userDelete = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to delete user" });
   }
 };
-

@@ -2,6 +2,45 @@ import userModel from "../schema/userSchema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+// LOGIN USER
+// export const userLogin = async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+
+//     // Find user by email
+//     const userVerify = await userModel.findOne({ email });
+//     if (!userVerify) {
+//       return res.status(404).json({ success: false, message: "User not found" });
+//     }
+
+//     // Check password
+//     const verifyPassword = await bcrypt.compare(password, userVerify.password);
+//     if (!verifyPassword) {
+//       return res.status(401).json({ success: false, message: "Incorrect password" });
+//     }
+
+//     // Create JWT token
+//     const token = jwt.sign(
+//       { userId: userVerify._id, userRole: userVerify.role },
+//       process.env.SECRET_KEY,
+//       { expiresIn: "1d" } // token valid for 1 day
+//     );
+
+//     // Send token in cookie and JSON response
+//     res
+//       .cookie("token", token, {
+//         httpOnly: true,
+//         secure: process.env.NODE_ENV === "production",
+//         maxAge: 24 * 60 * 60 * 1000, // 1 day
+//       })
+//       .status(200)
+//       .json({ success: true, token, message: "User logged in successfully" });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ success: false, message: "Login failed" });
+//   }
+// };
+
 export const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -107,4 +146,3 @@ export const userLogout = (req, res) => {
     res.status(500).json({ success: false, message: "Logout failed" });
   }
 };
-
